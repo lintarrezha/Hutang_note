@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplikasi Pencatat Hutang Piutang</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Auth Section -->
+      <div id="authSection">
+        <div class="auth-container">
+          <h1>💰 Hutang Piutang</h1>
+
+          <!-- Login Form -->
+          <div id="loginForm">
+            <h2>Masuk</h2>
+            <div class="form-group">
+              <label>Username:</label>
+              <input type="text" id="loginUsername" placeholder="Masukkan username" />
+            </div>
+            <div class="form-group">
+              <label>Password:</label>
+              <input type="password" id="loginPassword" placeholder="Masukkan password" />
+            </div>
+            <button onclick="login()">Masuk</button>
+            <button onclick="showRegister()" class="secondary">Daftar</button>
+            <div id="loginError" class="error"></div>
+          </div>
+
+          <!-- Register Form -->
+          <div id="registerForm" class="hidden">
+            <h2>Daftar</h2>
+            <div class="form-group">
+              <label>Nama Lengkap:</label>
+              <input type="text" id="registerName" placeholder="Masukkan nama lengkap" />
+            </div>
+            <div class="form-group">
+              <label>Username:</label>
+              <input type="text" id="registerUsername" placeholder="Masukkan username" />
+            </div>
+            <div class="form-group">
+              <label>Password:</label>
+              <input type="password" id="registerPassword" placeholder="Masukkan password" />
+            </div>
+            <button onclick="register()">Daftar</button>
+            <button onclick="showLogin()" class="secondary">Sudah punya akun?</button>
+            <div id="registerError" class="error"></div>
+            <div id="registerSuccess" class="success"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main App -->
+      <div id="appSection" class="hidden">
+        <div class="app-container">
+          <div class="header">
+            <h1>💰 Hutang Piutang</h1>
+            <div>
+              <span id="welcomeUser" style="margin-right: 20px; font-weight: 600"></span>
+              <button onclick="logout()" class="danger">Keluar</button>
+            </div>
+          </div>
+
+          <!-- Summary Cards -->
+          <div class="summary">
+            <div class="summary-card">
+              <div class="summary-amount" id="totalPiutang">Rp 0</div>
+              <div class="summary-label">Total Piutang</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-amount" id="totalHutang">Rp 0</div>
+              <div class="summary-label">Total Hutang</div>
+            </div>
+          </div>
+
+          <!-- Navigation Tabs -->
+          <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('piutang')">Orang Berhutang</button>
+            <button class="nav-tab" onclick="showTab('hutang')">Hutang Saya</button>
+          </div>
+
+          <!-- Piutang Section -->
+          <div id="piutangSection">
+            <h2>📝 Tambah Piutang Baru</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px">
+              <div class="form-group">
+                <label>Nama Orang:</label>
+                <input type="text" id="piutangPerson" placeholder="Nama yang berhutang" />
+              </div>
+              <div class="form-group">
+                <label>Jumlah (Rp):</label>
+                <input type="number" id="piutangAmount" placeholder="0" />
+              </div>
+              <div class="form-group">
+                <label>Keterangan:</label>
+                <input type="text" id="piutangDescription" placeholder="Keterangan hutang" />
+              </div>
+              <div class="form-group">
+                <label>Tanggal:</label>
+                <input type="date" id="piutangDate" />
+              </div>
+            </div>
+            <button onclick="addPiutang()">Tambah Piutang</button>
+            <div id="piutangError" class="error"></div>
+
+            <h2>📋 Daftar Piutang</h2>
+            <div id="piutangList" class="debt-grid"></div>
+          </div>
+
+          <!-- Hutang Section -->
+          <div id="hutangSection" class="hidden">
+            <h2>📝 Tambah Hutang Baru</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px">
+              <div class="form-group">
+                <label>Nama Pemberi Hutang:</label>
+                <input type="text" id="hutangPerson" placeholder="Nama yang memberi hutang" />
+              </div>
+              <div class="form-group">
+                <label>Jumlah (Rp):</label>
+                <input type="number" id="hutangAmount" placeholder="0" />
+              </div>
+              <div class="form-group">
+                <label>Keterangan:</label>
+                <input type="text" id="hutangDescription" placeholder="Keterangan hutang" />
+              </div>
+              <div class="form-group">
+                <label>Tanggal:</label>
+                <input type="date" id="hutangDate" />
+              </div>
+            </div>
+            <button onclick="addHutang()">Tambah Hutang</button>
+            <div id="hutangError" class="error"></div>
+
+            <h2>📋 Daftar Hutang</h2>
+            <div id="hutangList" class="debt-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
